@@ -1,3 +1,8 @@
+def get_column_index(column_name)
+    column = all("table thead th span").map(&:text)
+    column.index{ |x| x==column_name}
+end
+
 describe "Tabelas", :tabs, :smoke do
     before(:each) do
         visit "/tables"
@@ -18,13 +23,13 @@ describe "Tabelas", :tabs, :smoke do
 
     it "deve exibir o filme velozes" do
         diesel = find("table tbody tr", text: "@vindiesel")
-        movie = diesel.all("td")[2].text
+        movie = diesel.all("td")[get_column_index("Filme")].text
         expect(movie).to eql "Fast & Furious"
     end
 
     it "deve exibir o insta do Chris Evans" do
         evans = find("table tbody tr", text: "Chris Evans")
-        insta = evans.all("td")[4].text
+        insta = evans.all("td")[get_column_index("Instagram")].text
         expect(insta).to eql "@teamcevans"
     end
 
