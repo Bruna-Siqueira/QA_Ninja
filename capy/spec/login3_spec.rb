@@ -10,7 +10,7 @@ describe "Login com Cadastro", :login3 do
     #login_form.find("input[name=password").set "jarvis!"
     #click_button "Entrar"
 
-    # Modo 2 (melhor)
+    # Modo 2 (melhor) estabelece um escopo na página e faz um find somente dentro desse escopo
     within("#login") do
       find("input[name=username]").set "stark"
       find("input[name=password").set "jarvis!"
