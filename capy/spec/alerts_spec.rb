@@ -1,6 +1,6 @@
 describe "Alertas do JavaScript", :alerts do
     before(:each) do
-        visit "https://training-wheels-protocol.herokuapp.com/javascript_alerts"
+        visit "/javascript_alerts"
     end
 
     it "alerta" do
@@ -43,7 +43,7 @@ describe "Alertas do JavaScript", :alerts do
         click_button "Prompt"
         msg = page.driver.browser.switch_to.alert.text
         expect(msg).to eql "Qual o seu Nome?"
-        sleep 2
+        sleep 3
         page.driver.browser.switch_to.alert.dismiss
         expect(page).to have_content "Olá, null"
         sleep 3

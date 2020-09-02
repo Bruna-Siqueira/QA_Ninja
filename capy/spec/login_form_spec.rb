@@ -1,6 +1,6 @@
-describe "Forms" do
+describe "Forms", :smoke do
   it "login com sucesso" do
-    visit "https://training-wheels-protocol.herokuapp.com/login"
+    visit "/login"
 
     # O "fill_in" do Capybara funciona para elementos name e id
     fill_in "userId", with: "stark"
@@ -19,7 +19,7 @@ describe "Forms" do
   end
 
   it "senha incorreta" do
-    visit "https://training-wheels-protocol.herokuapp.com/login"
+    visit "/login"
     fill_in "username", with: "stark"
     fill_in "password", with: "jarvis"
     click_button "Login"
@@ -27,7 +27,7 @@ describe "Forms" do
   end
 
   it "usuário não cadastrado" do
-    visit "https://training-wheels-protocol.herokuapp.com/login"
+    visit "/login"
     fill_in "username", with: "starqui"
     fill_in "password", with: "jarvis!"
     click_button "Login"

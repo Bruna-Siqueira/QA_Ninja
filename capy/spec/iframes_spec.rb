@@ -1,7 +1,7 @@
-describe "iframes" do
+describe "iframes", :smoke do
     describe "bom", :nice_iframe do
         before(:each) do
-            visit "https://training-wheels-protocol.herokuapp.com/nice_iframe"
+            visit "/nice_iframe"
         end
 
         it "adicionar ao carrinho" do
@@ -17,7 +17,7 @@ describe "iframes" do
 
     describe "ruim", :bad_iframe do
         before(:each) do
-            visit "https://training-wheels-protocol.herokuapp.com/bad_iframe"
+            visit "/bad_iframe"
         end
 
         it "carrinho deve estar vazio" do
