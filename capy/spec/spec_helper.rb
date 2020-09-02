@@ -19,7 +19,7 @@ RSpec.configure do |config|
   config.after(:example) do |e|
     # Regex que substitui caracter especial por vazio e espaço em branco por underline
     nome = e.description.gsub(/[^A-Za-z0-9 ]/, '').tr(' ', '_')
-    page.save_screenshot("log/" + nome + ".png")
+    page.save_screenshot("log/" + nome + ".png") if e.exception
   end
 end
 
