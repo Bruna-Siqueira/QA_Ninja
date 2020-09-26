@@ -6,15 +6,12 @@ chai.use(chaiHttp);
 
 // Importando a aplicação que será testada
 const app = require('../app');
-const request = chai.request(app);
+// O .agent é para que a conexão com a aplicação seja mantida em todos os cenários.
+// Removendo esse .agent, o chai mata a conexão depois do primeiro cenário.
+const request = chai.request.agent(app);
 const expect = chai.expect;
 
 describe('get', () => {
-
-    before((done) => {
-        taskModel.deleteMany({});
-        done();
-    })
 
     context('quando eu tenho tarefas cadastradas', () => {
 
@@ -36,6 +33,18 @@ describe('get', () => {
                 .end((err, res) => {
                     expect(res).to.has.status(200);
                     expect(res.body.data).to.be.an('array');
+                    done();
+                })
+        })
+
+        it('deve filtrar por palavra chave', (done) => {
+            request
+                .get('/task')
+                .query({ title: 'Estudar' })
+                .end((err, res) => {
+                    expect(res).to.has.status(200);
+                    expect(res.body.data[0].title).to.equal('Estudar NodeJS');
+                    expect(res.body.data[1].title).to.equal('Estudar MongoDB');
                     done();
                 })
         })
