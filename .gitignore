@@ -1,1 +1,3 @@
 .vscode/
+/node/hello/node_modules
+/node/treko/node_modules
