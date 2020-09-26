@@ -49,4 +49,26 @@ describe('get', () => {
                 })
         })
     })
+
+    context('quando busco por id', () => {
+
+        it('deve retornar uma única tarefa', (done) => {
+            let tasks = [
+                { title: 'Ler um livro de Javascript', owner: 'bruna@siqueira.io', done: false },
+            ]
+            // Insere a lista task no banco
+            taskModel.insertMany(tasks, (err, result) => {
+                // Pega o id de retorno do banco
+                let id = result[0]._id
+                // Faz um request pelo id
+                request
+                    .get('/task/' + id)
+                    .end((err, res) => {
+                        expect(res).to.has.status(200);
+                        expect(res.body.data.title).to.equal(tasks[0].title);
+                        done();
+                    })
+            });
+        })
+    })
 })
