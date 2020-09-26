@@ -68,7 +68,24 @@ describe('get', () => {
                         expect(res.body.data.title).to.equal(tasks[0].title);
                         done();
                     })
-            });
+            })
+        })
+    })
+
+    context('quando o id não existe', () => {
+
+        it('deve retornar 404', (done) => {
+            // Cria um id do mongodb que não existe no banco
+            let id = require('mongoose').Types.ObjectId();
+            // Faz um request pelo id
+            request
+                .get('/task/' + id)
+                .end((err, res) => {
+                    expect(res).to.has.status(404);
+                    // O eql valida os valores e o equal valida os tipos
+                    expect(res.body).to.eql({});
+                    done();
+                })
         })
     })
 })
