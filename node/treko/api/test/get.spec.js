@@ -43,8 +43,8 @@ describe('get', () => {
                 .query({ title: 'Estudar' })
                 .end((err, res) => {
                     expect(res).to.has.status(200);
-                    expect(res.body.data[0].title).to.equal('Estudar NodeJS');
-                    expect(res.body.data[1].title).to.equal('Estudar MongoDB');
+                    expect(res.body.data[0].title).to.equal('Estudar MongoDB');
+                    expect(res.body.data[1].title).to.equal('Estudar NodeJS');
                     done();
                 })
         })
@@ -82,7 +82,7 @@ describe('get', () => {
                 .get('/task/' + id)
                 .end((err, res) => {
                     expect(res).to.has.status(404);
-                    // O eql valida os valores e o equal valida os tipos
+                    // O eql valida os valores e o equal valida os tipos também
                     expect(res.body).to.eql({});
                     done();
                 })

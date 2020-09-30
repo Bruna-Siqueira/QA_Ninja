@@ -44,7 +44,7 @@ Para subir apenas a aplicação e testar usando o postman:
 npm start
 `
 
-Para rodar os testes:
+Para rodar os testes no diretório ../node/treko/api:
 
 `
 npm test
